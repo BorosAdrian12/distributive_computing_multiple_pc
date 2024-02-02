@@ -1,0 +1,11 @@
+def test():
+    global dataFromFunc
+    a=[]
+    for i in range(10):
+        a.append(2**i)
+        
+    dataFromFunc.append(a)
+    time.sleep(3)
+    print(a)
+    
+    #print(f"size of dataFromFunc : {dataFromFunc}")
