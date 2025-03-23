@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY client.py .
 COPY packet.py .
+COPY server.py .
 
-CMD ["python", "client.py"]
+CMD ["python", "server.py"]
