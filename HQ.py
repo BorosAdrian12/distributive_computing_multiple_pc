@@ -6,8 +6,6 @@ import inspect
 import time 
 from packet import Packet
 
-
-
 class HQ:
     #aici am sa am nevoie de doua threaduri , unu care trimite si altul care primeste
     def __init__(self,host,port):

@@ -244,5 +244,5 @@ class client:
             self.client_socket.close()
         pass
         
-Cl=client('localhost',18001)
+Cl=client('127.0.0.1',18001)
 Cl.C_Connect()

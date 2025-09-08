@@ -1,0 +1,41 @@
+services:
+  server:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+      - "18001:18001"
+    volumes:
+      - server_data:/app/store  # Named volume for persistent storage
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"       # Limit CPU usage to 50%
+          memory: 512m      # Limit memory usage to 512MB
+    networks:
+      - app_network
+    restart: unless-stopped  # Restart policy
+
+  client:
+    build:
+      context: ./Client
+      dockerfile: Dockerfile
+    depends_on:
+      - server  # Ensure server starts first
+    environment:
+      - SERVER_HOST=server  # Use Docker service name for host
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"      # Limit CPU usage to 25%
+          memory: 256m     # Limit memory usage to 256MB
+    networks:
+      - app_network
+    restart: unless-stopped
+
+networks:
+  app_network:
+    driver: bridge  # Default bridge network
+
+volumes:
+  server_data:  # Define the named volume
